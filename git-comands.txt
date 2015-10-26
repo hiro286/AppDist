@@ -20,3 +20,16 @@ git checkout master
 git merge clean_up                  [Combina la rama actual con la establecida]
 git branch -d clean_up              [Elimina larama XYZ]
 git push                            [Sincroniza la nuve con local]
+
+---------------------------------------
+----- C / gcc -----
+sudo apt-get install build-essential
+    [Instala gcc]
+gcc fuente.c -o ejecutable
+    [linux/nombre del archivo con extencio y nombre del archivo ejecutable a crer por gcc]
+gcc -o ejecutable.exe fuente.c
+    [windows]
+./ejecutable 
+    [en Ubuntu]
+ejecutable.exe 
+    [en Windows]
