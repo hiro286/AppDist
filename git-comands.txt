@@ -33,3 +33,7 @@ gcc -o ejecutable.exe fuente.c
     [en Ubuntu]
 ejecutable.exe 
     [en Windows]
+--- C ++  ---
+"*.cpp"
+g++ hola.cpp -o Hola
+./Hola
