@@ -6,10 +6,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h> // <-- Inclye 'read', 'write' y 'close'
 #define STDOUT 1
 #define SERV_ADDR 1234
 
-int main(){
+int main(){     // <---{   void -> int }
     int rval;
     int sock,length, msgsock;
     struct sockaddr_in server;
@@ -25,7 +26,7 @@ int main(){
     server.sin_addr.s_addr=htonl(INADDR_ANY);
     server.sin_port=htons(SERV_ADDR);
     
-    if( bind(sock,(struct sockaddr *)&server,sizeof server) < 0 ){
+    if( bind(sock,(struct sockaddr *)&server,sizeof server) < 0 ){//*
         perror("direccion no asignada");
         exit(1);
     }
@@ -39,12 +40,13 @@ int main(){
             perror("Conexion no aceptada!!!!!!!!!!!!!!\n");
         }else do{
             memset(buf,0,sizeof buf);
-        rval=read(msgsock, buf,1024); //   <--- Error
-        if (rval<0) perror("Mensaje no leido..");
-        else write(STDOUT,buf,rval); //   <--- Error
+            rval=read(msgsock, buf,1024); //   <--- 
+            // ^ Se incluyo "unistd.h"
+            if (rval<0) perror("Mensaje no leido..");
+            else write(STDOUT,buf,rval); //   <--- 
         }while(rval>0);
-        printf("\nCerrando la conexion......\n");
-        close(msgsock);  //   <--- Error
+            printf("\nCerrando la conexion......\n");
+            close(msgsock);  //   <--- 
         }while(1);
     exit(0);
     return 0;
