@@ -10,6 +10,9 @@
 #define STDOUT 1
 #define SERV_ADDR 1234
 
+
+#include <arpa/inet.h>
+
 int main(){     // <---{   void -> int }
     int rval;
     int sock,length, msgsock;
@@ -43,11 +46,23 @@ int main(){     // <---{   void -> int }
             rval=read(msgsock, buf,1024); //   <--- 
             // ^ Se incluyo "unistd.h"
             if (rval<0) perror("Mensaje no leido..");
-            else write(STDOUT,buf,rval); //   <--- 
+            else {
+                write(STDOUT,buf,rval); //   <--- 
+                //char  peer_addr_str[ INET_ADDRSTRLEN ];
+                char * peer_addr_str;
+                //inet_ntop( AF_INET, &server, peer_addr_str, INET_ADDRSTRLEN );
+                peer_addr_str = inet_ntoa(server.sin_addr);
+                printf("\n %s\n",peer_addr_str);
+                
+                /*char *some_addr;
+                some_addr = inet_ntoa(server.sin_addr); // return the IP
+                printf("\n %s\n", some_addr); // prints "10.0.0.1"*/
+            }
+            //else write(STDOUT,(const void*)&server.sin_addr,rval); //   <--- 
         }while(rval>0);
             printf("\nCerrando la conexion......\n");
             close(msgsock);  //   <--- 
-        }while(1);
+    }while(1);
     exit(0);
     return 0;
 }

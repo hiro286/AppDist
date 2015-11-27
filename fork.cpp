@@ -1,7 +1,7 @@
 #include <sys/types.h>
 #include <wait.h>
 #include <unistd.h>
-#include <stdlib.h> // <---
+#include <stdlib.h> // <--- ***
 #include <stdio.h>
 /*
 * Programa principal.
@@ -11,7 +11,7 @@
 * El proceso padre espera un segundo, escribe su id, el de su hijo y espera
 * que el hijo termine. Escribe en pantalla el valor de exit del hijo.
 */
-int main(){ // <---
+int main(){ // <--- ***
     /* Identificador del proceso creado */
     pid_t idProceso;
     /* Variable para comprobar que se copia inicialmente en cada proceso y que
